@@ -29,13 +29,13 @@ public class SCLButton: UIButton {
     public init() {
         super.init(frame: CGRectZero)
     }
-
-	required public init?(coder aDecoder: NSCoder) {
-		super.init(coder:aDecoder)
-	}
-
+	
     override public init(frame:CGRect) {
         super.init(frame:frame)
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -100,7 +100,7 @@ public class SCLAlertView: UIViewController {
     private var inputs = [UITextField]()
     private var buttons = [SCLButton]()
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
 
@@ -264,7 +264,7 @@ public class SCLAlertView: UIViewController {
             let ctrl = UIControl()
             ctrl.sendAction(btn.selector, to:btn.target, forEvent:nil)
         } else {
-            print("Unknow action type for button")
+            print("Unknow action type for button", terminator: "")
         }
         hideView()
     }
