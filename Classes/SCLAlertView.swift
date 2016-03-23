@@ -29,7 +29,7 @@ public class SCLButton: UIButton {
     public init() {
         super.init(frame: CGRectZero)
     }
-	
+
     override public init(frame:CGRect) {
         super.init(frame:frame)
     }
@@ -63,6 +63,10 @@ public class SCLAlertViewResponder {
 }
 
 let kCircleHeightBackground: CGFloat = 62.0
+
+public enum SCLButtonsLayout {
+	case Vertical, Horizontal
+}
 
 // The Main Class
 public class SCLAlertView: UIViewController {
@@ -99,13 +103,15 @@ public class SCLAlertView: UIViewController {
     var durationTimer: NSTimer!
     private var inputs = [UITextField]()
     private var buttons = [SCLButton]()
+	var buttonsLayout: SCLButtonsLayout = .Vertical
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
 
-    required public init() {
+	required public init() {
         super.init(nibName:nil, bundle:nil)
+
         // Set up main view
         view.frame = UIScreen.mainScreen().bounds
         view.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
@@ -190,10 +196,33 @@ public class SCLAlertView: UIViewController {
             y += 40
         }
         // Buttons
-        for btn in buttons {
-            btn.frame = CGRect(x:12, y:y, width:kWindowWidth - 24, height:35)
+
+
+
+        for (index, btn) in buttons.enumerate() {
+
+			if buttonsLayout == .Vertical {
+				btn.frame = CGRect(x:12, y:y, width:kWindowWidth - 24, height:35)
+			} else {
+				let horizontalSpacing: CGFloat = 30
+				let padding: CGFloat = 15
+
+				let totalSpacing = horizontalSpacing * CGFloat(buttons.count - 1)
+				let totalWidth = kWindowWidth - padding * 2
+
+				let buttonWidth = (totalWidth - totalSpacing) / CGFloat(buttons.count)
+
+
+				btn.frame = CGRect(x:padding + CGFloat(index) * (buttonWidth + horizontalSpacing), y:y, width:buttonWidth, height:35)
+			}
+
+
             btn.layer.cornerRadius = 3
-            y += 45.0
+
+			if buttonsLayout == .Vertical {
+				y += 45.0
+			}
+
         }
     }
     
@@ -246,7 +275,14 @@ public class SCLAlertView: UIViewController {
 
     private func addButton(title:String)->SCLButton {
         // Update view height
-        kWindowHeight += 45.0
+
+		if buttonsLayout == .Vertical {
+			kWindowHeight += 45.0
+		} else if buttons.count == 0 {
+			kWindowHeight += 45.0
+		}
+
+
         // Add button
         let btn = SCLButton()
         btn.layer.masksToBounds = true

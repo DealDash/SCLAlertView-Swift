@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     
     @IBAction func showSuccess(sender: AnyObject) {
 		let alert = SCLAlertView()
+		alert.buttonsLayout = .Horizontal
 		alert.addButton("First Button", target:self, selector:Selector("firstButton"))
 		alert.addButton("Second Button") {
 			print("Second button tapped")
