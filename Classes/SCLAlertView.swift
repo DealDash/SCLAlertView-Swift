@@ -103,7 +103,7 @@ public class SCLAlertView: UIViewController {
     var durationTimer: NSTimer!
     private var inputs = [UITextField]()
     private var buttons = [SCLButton]()
-	var buttonsLayout: SCLButtonsLayout = .Vertical
+	public var buttonsLayout: SCLButtonsLayout = .Vertical
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
