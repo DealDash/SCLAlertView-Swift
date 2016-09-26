@@ -155,7 +155,7 @@ public class SCLAlertView: UIViewController {
 		viewText.textColor = UIColorFromRGB(0x4D4D4D)
 		contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor
 		//Gesture Recognizer for tapping outside the textinput
-		let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SCLAlertView.dismissKeyboard))
 		tapGesture.numberOfTapsRequired = 1
 		self.view.addGestureRecognizer(tapGesture)
 	}
@@ -256,9 +256,9 @@ public class SCLAlertView: UIViewController {
 		btn.actionType = SCLActionType.Closure
 		btn.action = action
 		btn.target = self
-		btn.addTarget(self, action:Selector("buttonTapped:"), forControlEvents:.TouchUpInside)
-		btn.addTarget(self, action:Selector("buttonTapDown:"), forControlEvents:[.TouchDown, .TouchDragEnter])
-		btn.addTarget(self, action:Selector("buttonRelease:"), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), forControlEvents:.TouchUpInside)
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapDown(_:)), forControlEvents:[.TouchDown, .TouchDragEnter])
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonRelease(_:)), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
 		return btn
 	}
 
@@ -267,9 +267,9 @@ public class SCLAlertView: UIViewController {
 		btn.actionType = SCLActionType.Selector
 		btn.target = target
 		btn.selector = selector
-		btn.addTarget(self, action:Selector("buttonTapped:"), forControlEvents:.TouchUpInside)
-		btn.addTarget(self, action:Selector("buttonTapDown:"), forControlEvents:[.TouchDown, .TouchDragEnter])
-		btn.addTarget(self, action:Selector("buttonRelease:"), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), forControlEvents:.TouchUpInside)
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapDown(_:)), forControlEvents:[.TouchDown, .TouchDragEnter])
+		btn.addTarget(self, action:#selector(SCLAlertView.buttonRelease(_:)), forControlEvents:[.TouchUpInside, .TouchUpOutside, .TouchCancel, .TouchDragOutside] )
 		return btn
 	}
 
@@ -437,7 +437,7 @@ public class SCLAlertView: UIViewController {
 			}
 		}
 
-		let cancelSelector = Selector("cancelView")
+		let cancelSelector = #selector(SCLAlertView.cancelView)
 
 		if buttonsLayout == .Horizontal {
 			if cancelText != nil {
@@ -446,7 +446,7 @@ public class SCLAlertView: UIViewController {
 		}
 		// Done button
 		if completeText != nil {
-			addButton(completeText!, target:self, selector:Selector("hideView"))
+			addButton(completeText!, target:self, selector:#selector(SCLAlertView.hideView))
 		}
 
 		if buttonsLayout == .Vertical {
@@ -472,7 +472,7 @@ public class SCLAlertView: UIViewController {
 		// Adding duration
 		if duration > 0 {
 			durationTimer?.invalidate()
-			durationTimer = NSTimer.scheduledTimerWithTimeInterval(duration!, target: self, selector: Selector("hideView"), userInfo: nil, repeats: false)
+			durationTimer = NSTimer.scheduledTimerWithTimeInterval(duration!, target: self, selector: #selector(SCLAlertView.hideView), userInfo: nil, repeats: false)
 		}
 
 		// Animate in the alert view
