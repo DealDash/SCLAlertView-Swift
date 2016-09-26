@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ngj-nl-OHz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ngj-nl-OHz">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhe-aS-BHL">
-                                <rect key="frame" x="261" y="153" width="77" height="30"/>
+                                <rect key="frame" x="261.5" y="153" width="76" height="30"/>
                                 <state key="normal" title="Show Error">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOp-SD-9bQ">
-                                <rect key="frame" x="256" y="203" width="88" height="30"/>
+                                <rect key="frame" x="256.5" y="203" width="87" height="30"/>
                                 <state key="normal" title="Show Notice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWR-vv-K1w">
-                                <rect key="frame" x="250" y="253" width="100" height="30"/>
+                                <rect key="frame" x="250.5" y="253" width="99" height="30"/>
                                 <state key="normal" title="Show Warning">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ism-f4-jWc">
-                                <rect key="frame" x="266" y="303" width="69" height="30"/>
+                                <rect key="frame" x="266.5" y="303" width="68" height="30"/>
                                 <state key="normal" title="Show Info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arb-3g-Toj">
-                                <rect key="frame" x="249" y="103" width="102" height="30"/>
+                                <rect key="frame" x="250" y="103" width="100" height="30"/>
                                 <state key="normal" title="Show Success">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -63,12 +63,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-98-W7e">
-                                <rect key="frame" x="265" y="353" width="70" height="30"/>
+                                <rect key="frame" x="265.5" y="353" width="69" height="30"/>
                                 <state key="normal" title="Show Edit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showEdit:" destination="ngj-nl-OHz" eventType="touchUpInside" id="Cce-Yv-6Q3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cje-da-7si" userLabel="Show Warning With Check">
+                                <rect key="frame" x="209" y="403" width="182" height="30"/>
+                                <state key="normal" title="Show Warning With Check">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showEdit:" destination="ngj-nl-OHz" eventType="touchUpInside" id="WzF-dy-EXV"/>
+                                    <action selector="showWarningWithCheck:" destination="ngj-nl-OHz" eventType="touchUpInside" id="bKs-yv-Ikb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -89,6 +99,8 @@
                             <constraint firstItem="McK-98-W7e" firstAttribute="leading" secondItem="ism-f4-jWc" secondAttribute="leading" id="kzA-aj-lPP"/>
                             <constraint firstItem="ism-f4-jWc" firstAttribute="top" secondItem="VWR-vv-K1w" secondAttribute="bottom" constant="20" id="m91-r8-IcB"/>
                             <constraint firstItem="dOp-SD-9bQ" firstAttribute="top" secondItem="Uhe-aS-BHL" secondAttribute="bottom" constant="20" id="rWX-S4-YjF"/>
+                            <constraint firstItem="cje-da-7si" firstAttribute="top" secondItem="McK-98-W7e" secondAttribute="bottom" constant="20" id="ylq-LJ-5y6"/>
+                            <constraint firstItem="cje-da-7si" firstAttribute="centerX" secondItem="7du-np-8iv" secondAttribute="centerX" id="z0y-eg-U5D"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

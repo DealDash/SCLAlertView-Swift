@@ -364,8 +364,13 @@ public class SCLAlertView: UIViewController {
 		return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, icon: nil)
 	}
 
+	// showWarningWithCheck(view, title, subtitle, icon, close, cancel)
+	public func showWarningWithCheck(title: String, subTitle: String, icon:UIImage, closeButtonTitle:String, cancelButtonTitle: String, duration:NSTimeInterval=0.0) -> SCLAlertViewResponder {
+		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, cancelText: cancelButtonTitle, style: .Custom, icon: icon)
+	}
+
 	// showTitle(view, title, subTitle, duration, style)
-	public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, icon: UIImage?) -> SCLAlertViewResponder {
+	public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, cancelText: String? = nil, style: SCLAlertViewStyle, icon: UIImage?) -> SCLAlertViewResponder {
 
 		SCLAlertView.currentAlertView?.view.removeFromSuperview()
 		SCLAlertView.currentAlertView = self
@@ -432,10 +437,24 @@ public class SCLAlertView: UIViewController {
 			}
 		}
 
+		let cancelSelector = Selector("cancelView")
+
+		if buttonsLayout == .Horizontal {
+			if cancelText != nil {
+				addButton(cancelText!, target:self, selector: cancelSelector)
+			}
+		}
 		// Done button
 		if completeText != nil {
 			addButton(completeText!, target:self, selector:Selector("hideView"))
 		}
+
+		if buttonsLayout == .Vertical {
+			if cancelText != nil {
+				addButton(cancelText!, target:self, selector: cancelSelector)
+			}
+		}
+
 
 		// Alert view colour and images
 		self.circleView.backgroundColor = viewColor
@@ -472,6 +491,15 @@ public class SCLAlertView: UIViewController {
 
 	// Close SCLAlertView
 	public func hideView() {
+		UIView.animateWithDuration(0.2, animations: {
+			self.view.alpha = 0
+			}, completion: { finished in
+				self.view.removeFromSuperview()
+				SCLAlertView.currentAlertView = nil
+		})
+	}
+
+	public func cancelView() {
 		UIView.animateWithDuration(0.2, animations: {
 			self.view.alpha = 0
 			}, completion: { finished in

@@ -65,6 +65,12 @@ class ViewController: UIViewController {
 		}
 		alert.showEdit(kInfoTitle, subTitle:kSubtitle)
 	}
+
+	@IBAction func showWarningWithCheck(sender: AnyObject) {
+		let alert = SCLAlertView()
+		alert.buttonsLayout = .Horizontal
+		alert.showWarningWithCheck("Warning With Check", subTitle: "Be careful", icon: UIImage(named: "testImage")!, closeButtonTitle: "Ok", cancelButtonTitle: "Cancel")
+	}
 	
 	func firstButton() {
 		print("First button tapped")
