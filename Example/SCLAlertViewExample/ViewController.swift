@@ -30,34 +30,34 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func showSuccess(sender: AnyObject) {
+    @IBAction func showSuccess(_ sender: AnyObject) {
 		let alert = SCLAlertView()
-		alert.buttonsLayout = .Horizontal
-		alert.addButton("First Button", target:self, selector:Selector("firstButton"))
+		alert.buttonsLayout = .horizontal
+		alert.addButton("First Button", target:self, selector: #selector(ViewController.firstButton))
 		alert.addButton("Second Button") {
 			print("Second button tapped")
 		}
-        alert.showSuccess(kSuccessTitle, subTitle: kSubtitle)
+		let _ = alert.showSuccess(kSuccessTitle, subTitle: kSubtitle)
     }
     
-    @IBAction func showError(sender: AnyObject) {
+    @IBAction func showError(_ sender: AnyObject) {
 		SCLAlertView().showError("Hold On...", subTitle:"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.", closeButtonTitle:"OK")
 //        SCLAlertView().showError(self, title: kErrorTitle, subTitle: kSubtitle)
     }
     
-    @IBAction func showNotice(sender: AnyObject) {
+    @IBAction func showNotice(_ sender: AnyObject) {
         SCLAlertView().showNotice(kNoticeTitle, subTitle: kSubtitle)
     }
     
-    @IBAction func showWarning(sender: AnyObject) {
+    @IBAction func showWarning(_ sender: AnyObject) {
         SCLAlertView().showWarning(kWarningTitle, subTitle: kSubtitle)
     }
     
-    @IBAction func showInfo(sender: AnyObject) {
+    @IBAction func showInfo(_ sender: AnyObject) {
         SCLAlertView().showInfo(kInfoTitle, subTitle: kSubtitle)
     }
 
-	@IBAction func showEdit(sender: AnyObject) {
+	@IBAction func showEdit(_ sender: AnyObject) {
 		let alert = SCLAlertView()
 		let txt = alert.addTextField("Enter your name")
 		alert.addButton("Show Name") {
@@ -66,9 +66,9 @@ class ViewController: UIViewController {
 		alert.showEdit(kInfoTitle, subTitle:kSubtitle)
 	}
 
-	@IBAction func showWarningWithCheck(sender: AnyObject) {
+	@IBAction func showWarningWithCheck(_ sender: AnyObject) {
 		let alert = SCLAlertView()
-		alert.buttonsLayout = .Horizontal
+		alert.buttonsLayout = .horizontal
 		alert.showWarningWithCheck("Warning With Check", subTitle: "Be careful", icon: UIImage(named: "testImage")!, closeButtonTitle: "Ok", cancelButtonTitle: "Cancel")
 	}
 	
