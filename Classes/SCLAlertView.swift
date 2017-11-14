@@ -476,6 +476,7 @@ open class SCLAlertView: UIViewController {
 				btn.layer.borderColor = viewColor.cgColor
 				btn.layer.borderWidth = 2
 				btn.backgroundColor = contentView.backgroundColor
+				btn.setTitleColor(viewColor, for: .normal)
 			}
 			if style == SCLAlertViewStyle.warning {
 				btn.setTitleColor(UIColor.black, for:UIControlState())
