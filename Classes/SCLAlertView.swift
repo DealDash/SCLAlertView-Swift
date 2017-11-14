@@ -326,6 +326,9 @@ open class SCLAlertView: UIViewController {
 
 	func buttonRelease(_ btn:SCLButton) {
 		btn.backgroundColor = viewColor
+		if btn.customType == .cancel {
+			btn.backgroundColor = contentView.backgroundColor
+		}
 	}
 
 	//Dismiss keyboard when tapped outside textfield
