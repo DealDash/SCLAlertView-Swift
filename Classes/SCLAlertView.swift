@@ -362,7 +362,7 @@ open class SCLAlertView: UIViewController {
 	}
 
 	// showInfo(view, title, subTitle)
-	@discardableResult @discardableResult open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .info, icon: nil)
 	}
 
