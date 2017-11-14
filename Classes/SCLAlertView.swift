@@ -257,7 +257,7 @@ open class SCLAlertView: UIViewController {
 		return txt
 	}
 
-	open func addButton(_ title:String, type: SCLButtonType = .normal, action:@escaping ()->Void)->SCLButton {
+	@discardableResult open func addButton(_ title:String, type: SCLButtonType = .normal, action:@escaping ()->Void)->SCLButton {
 		let btn = addButton(title)
 		btn.actionType = SCLActionType.closure
 		btn.customType = type
@@ -269,7 +269,7 @@ open class SCLAlertView: UIViewController {
 		return btn
 	}
 
-	open func addButton(_ title:String, type: SCLButtonType = .normal, target:AnyObject, selector:Selector)->SCLButton {
+	@discardableResult open func addButton(_ title:String, type: SCLButtonType = .normal, target:AnyObject, selector:Selector)->SCLButton {
 		let btn = addButton(title)
 		btn.actionType = SCLActionType.selector
 		btn.customType = type
@@ -337,51 +337,51 @@ open class SCLAlertView: UIViewController {
 	}
 
 	// showSuccess(view, title, subTitle)
-	open func showSuccess(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showSuccess(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .success, icon: nil)
 	}
 
 	// showError(view, title, subTitle)
-	open func showError(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showError(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .error, icon: nil)
 	}
 
 	// showNotice(view, title, subTitle)
-	open func showNotice(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showNotice(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .notice, icon: nil)
 	}
 
 	// showWarning(view, title, subTitle)
-	open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .warning, icon: nil)
 	}
 
 	// showCustom(view, title, subTitle, icon)
-	open func showCustom(_ title: String, subTitle: String, icon:UIImage, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showCustom(_ title: String, subTitle: String, icon:UIImage, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .custom, icon: icon)
 	}
 
 	// showInfo(view, title, subTitle)
-	open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult @discardableResult open func showInfo(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .info, icon: nil)
 	}
 
-	open func showEdit(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showEdit(_ title: String, subTitle: String, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .edit, icon: nil)
 	}
 
 	// showTitle(view, title, subTitle, style)
-	open func showTitle(_ title: String, subTitle: String, style: SCLAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showTitle(_ title: String, subTitle: String, style: SCLAlertViewStyle, closeButtonTitle:String?=nil, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, icon: nil)
 	}
 
 	// showWarningWithCheck(view, title, subtitle, icon, close, cancel)
-	open func showWarningWithCheck(_ title: String, subTitle: String, icon:UIImage, closeButtonTitle:String, cancelButtonTitle: String, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
+	@discardableResult open func showWarningWithCheck(_ title: String, subTitle: String, icon:UIImage, closeButtonTitle:String, cancelButtonTitle: String, duration:TimeInterval=0.0) -> SCLAlertViewResponder {
 		return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, cancelText: cancelButtonTitle, style: .custom, icon: icon)
 	}
 
 	// showTitle(view, title, subTitle, duration, style)
-	open func showTitle(_ title: String, subTitle: String, duration: TimeInterval?, completeText: String?, cancelText: String? = nil, style: SCLAlertViewStyle, icon: UIImage?) -> SCLAlertViewResponder {
+	@discardableResult open func showTitle(_ title: String, subTitle: String, duration: TimeInterval?, completeText: String?, cancelText: String? = nil, style: SCLAlertViewStyle, icon: UIImage?) -> SCLAlertViewResponder {
 
 		SCLAlertView.currentAlertView?.view.removeFromSuperview()
 		SCLAlertView.currentAlertView = self
