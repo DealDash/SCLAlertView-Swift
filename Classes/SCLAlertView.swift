@@ -19,9 +19,15 @@ public enum SCLActionType {
 	case none, selector, closure
 }
 
+// Button Styles
+public enum SCLButtonType {
+	case normal, cancel
+}
+
 // Button sub-class
 open class SCLButton: UIButton {
 	var actionType = SCLActionType.none
+	var customType = SCLButtonType.normal
 	var target:AnyObject!
 	var selector:Selector!
 	var action:(()->Void)!
@@ -251,9 +257,10 @@ open class SCLAlertView: UIViewController {
 		return txt
 	}
 
-	open func addButton(_ title:String, action:@escaping ()->Void)->SCLButton {
+	open func addButton(_ title:String, type: SCLButtonType = .normal, action:@escaping ()->Void)->SCLButton {
 		let btn = addButton(title)
 		btn.actionType = SCLActionType.closure
+		btn.customType = type
 		btn.action = action
 		btn.target = self
 		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), for:.touchUpInside)
@@ -262,9 +269,10 @@ open class SCLAlertView: UIViewController {
 		return btn
 	}
 
-	open func addButton(_ title:String, target:AnyObject, selector:Selector)->SCLButton {
+	open func addButton(_ title:String, type: SCLButtonType = .normal, target:AnyObject, selector:Selector)->SCLButton {
 		let btn = addButton(title)
 		btn.actionType = SCLActionType.selector
+		btn.customType = type
 		btn.target = target
 		btn.selector = selector
 		btn.addTarget(self, action:#selector(SCLAlertView.buttonTapped(_:)), for:.touchUpInside)
@@ -464,6 +472,11 @@ open class SCLAlertView: UIViewController {
 		}
 		for btn in buttons {
 			btn.backgroundColor = viewColor
+			if btn.customType == .cancel {
+				btn.layer.borderColor = viewColor.cgColor
+				btn.layer.borderWidth = 2
+				btn.backgroundColor = contentView.backgroundColor
+			}
 			if style == SCLAlertViewStyle.warning {
 				btn.setTitleColor(UIColor.black, for:UIControlState())
 			}
@@ -480,10 +493,10 @@ open class SCLAlertView: UIViewController {
 		UIView.animate(withDuration: 0.2, animations: {
 			self.baseView.center.y = rv.center.y + 15
 			self.view.alpha = 1
-			}, completion: { finished in
-				UIView.animate(withDuration: 0.2, animations: {
-					self.baseView.center = rv.center
-				})
+		}, completion: { finished in
+			UIView.animate(withDuration: 0.2, animations: {
+				self.baseView.center = rv.center
+			})
 		})
 		// Chainable objects
 		return SCLAlertViewResponder(alertview: self)
@@ -493,18 +506,18 @@ open class SCLAlertView: UIViewController {
 	open func hideView() {
 		UIView.animate(withDuration: 0.2, animations: {
 			self.view.alpha = 0
-			}, completion: { finished in
-				self.view.removeFromSuperview()
-				SCLAlertView.currentAlertView = nil
+		}, completion: { finished in
+			self.view.removeFromSuperview()
+			SCLAlertView.currentAlertView = nil
 		})
 	}
 
 	open func cancelView() {
 		UIView.animate(withDuration: 0.2, animations: {
 			self.view.alpha = 0
-			}, completion: { finished in
-				self.view.removeFromSuperview()
-				SCLAlertView.currentAlertView = nil
+		}, completion: { finished in
+			self.view.removeFromSuperview()
+			SCLAlertView.currentAlertView = nil
 		})
 	}
 
