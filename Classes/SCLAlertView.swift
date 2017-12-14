@@ -21,7 +21,7 @@ public enum SCLActionType {
 
 // Button Styles
 public enum SCLButtonType {
-	case normal, cancel
+	case normal, cancel, persistent
 }
 
 // Button sub-class
@@ -310,6 +310,7 @@ open class SCLAlertView: UIViewController {
 		} else {
 			print("Unknow action type for button", terminator: "")
 		}
+		guard btn.customType != persistent else { return }
 		hideView()
 	}
 
