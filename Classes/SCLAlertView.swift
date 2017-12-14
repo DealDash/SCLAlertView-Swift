@@ -310,7 +310,7 @@ open class SCLAlertView: UIViewController {
 		} else {
 			print("Unknow action type for button", terminator: "")
 		}
-		guard btn.customType != persistent else { return }
+		guard btn.customType != .persistent else { return }
 		hideView()
 	}
 
