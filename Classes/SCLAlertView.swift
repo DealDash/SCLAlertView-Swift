@@ -155,6 +155,8 @@ open class SCLAlertView: UIViewController {
 		viewText.textContainerInset = UIEdgeInsets.zero
 		viewText.textContainer.lineFragmentPadding = 0;
 		viewText.font = UIFont(name: kDefaultFont, size:14)
+		viewText.dataDetectorTypes = .link
+		viewText.isUserInteractionEnabled = true
 		// Colours
 		contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
 		labelTitle.textColor = UIColorFromRGB(0x4D4D4D)
