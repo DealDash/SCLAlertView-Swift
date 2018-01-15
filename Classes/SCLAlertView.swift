@@ -55,12 +55,14 @@ open class SCLAlertViewResponder {
 		self.alertview = alertview
 	}
 
-	open func setTitle(_ title: String) {
-		self.alertview.labelTitle.text = title
-	}
-
 	open func setSubTitle(_ subTitle: String) {
 		self.alertview.viewText.text = subTitle
+		self.alertview.viewText.attributedText = nil
+	}
+
+	open func setSubTitle(_ subTitleAttributed: NSAttributedString) {
+		self.alertview.viewText.text = nil
+		self.alertview.viewText.attributedText = subTitleAttributed
 	}
 
 	open func close() {
